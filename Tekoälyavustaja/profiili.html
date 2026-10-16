@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Campus Connectin käyttäjäprofiili ja asetukset.">
+    <title>Campus Connect – Profiili</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .profile-card {
+            padding: 22px 16px;
+            margin-bottom: 14px;
+            background: white;
+            border: 1px solid #e1e8ff;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .profile-avatar {
+            width: 78px; height: 78px;
+            display: grid; place-items: center;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            background: #ffeadc;
+            border: 3px solid #ffd1b8;
+            font-size: 30px;
+        }
+        .profile-card h1 { margin: 0 0 6px; font-size: 20px; }
+        .profile-card > p { margin: 0; color: #6e5c55; font-size: 12px; }
+        .profile-tag {
+            display: inline-block; margin-top: 12px;
+            padding: 6px 11px; border-radius: 15px;
+            color: #006b9b; background: #e3f4ff; font-size: 10px;
+        }
+        .profile-section {
+            padding: 16px; margin-bottom: 13px;
+            background: white; border: 1px solid #e1e8ff;
+            border-radius: 17px;
+        }
+        .profile-section h2 { margin: 0 0 14px; font-size: 14px; }
+        .profile-row {
+            display: flex; justify-content: space-between;
+            align-items: center; gap: 12px;
+            padding: 12px 0; border-top: 1px solid #edf0fa;
+        }
+        .profile-row:first-of-type { border-top: 0; }
+        .profile-row strong { display: block; font-size: 12px; }
+        .profile-row small { display: block; margin-top: 4px; color: #74665e; font-size: 10px; }
+        .profile-value { font-size: 11px; color: #006b9b; text-align: right; }
+        .profile-button {
+            padding: 8px 12px; border-radius: 10px;
+            border: 1px solid #c9dcff; background: #f0f4ff;
+            color: #075b87; font-size: 11px; cursor: pointer;
+        }
+        .setting-row {
+            display: flex; align-items: center;
+            justify-content: space-between; gap: 12px;
+            padding: 12px 0; border-top: 1px solid #edf0fa;
+            font-size: 12px;
+        }
+        .setting-row:first-of-type { border-top: 0; }
+        .setting-row input { width: 18px; height: 18px; accent-color: #0074ac; }
+        .profile-note { color: #74665e; font-size: 10px; line-height: 1.5; }
+    </style>
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="index.html">
+        <span class="brand-icon" aria-hidden="true">🎓</span>
+        <span><small>CAMPUS CONNECT</small><strong>Profiili</strong></span>
+    </a>
+    <nav class="top-actions" aria-label="Päätoiminnot">
+        <a href="opinnot.html" aria-label="Opinnot">♧</a>
+        <a href="#asetukset" aria-label="Asetukset">⚙</a>
+        <a class="initials" href="profiili.html" aria-current="page">EM</a>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="profile-card">
+        <div class="profile-avatar" aria-hidden="true">👩‍🎓</div>
+        <h1>Emma Mallikas</h1>
+        <p>Opiskelija · Tietojenkäsittelytiede</p>
+        <span class="profile-tag">🎓 Kandidaatin tutkinto</span>
+    </section>
+
+    <section class="profile-section">
+        <h2>📚 Opintojen yhteenveto</h2>
+        <div class="profile-row">
+            <div><strong>Suoritetut opintopisteet</strong><small>Opintojen kokonaismäärä</small></div>
+            <span class="profile-value">145 / 180 op</span>
+        </div>
+        <div class="profile-row">
+            <div><strong>Tutkinnon edistyminen</strong><small>Tavoitteen mukainen eteneminen</small></div>
+            <span class="profile-value">80,5 %</span>
+        </div>
+        <div class="profile-row">
+            <div><strong>Käynnissä olevat kurssit</strong><small>Tämän periodin opinnot</small></div>
+            <span class="profile-value">3 kurssia</span>
+        </div>
+        <a class="profile-button" href="opinnot.html">Katso opinnot →</a>
+    </section>
+
+    <section class="profile-section" id="asetukset">
+        <h2>⚙ Asetukset</h2>
+
+        <label class="setting-row">
+            <span>Opintojen muistutukset</span>
+            <input type="checkbox" checked>
+        </label>
+
+        <label class="setting-row">
+            <span>Niklas-avustajan vinkit</span>
+            <input type="checkbox" checked>
+        </label>
+
+        <label class="setting-row">
+            <span>Näytä tehtävien deadlinet</span>
+            <input type="checkbox" checked>
+        </label>
+
+        <p class="profile-note">
+            Asetukset ovat tämän prototyypin paikallisia esimerkkitoimintoja.
+            Niitä ei tallenneta käyttäjätilille.
+        </p>
+    </section>
+
+    <section class="profile-section">
+        <h2>ℹ Tietoa palvelusta</h2>
+        <p class="profile-note">
+            Campus Connect auttaa opiskelijaa seuraamaan kursseja,
+            aikatauluja ja tehtävien määräaikoja yhdessä paikassa.
+            Niklas on opiskelua tukeva avustajademo.
+        </p>
+    </section>
+</main>
+
+<nav class="bottom-nav" aria-label="Alavalikko">
+    <a class="nav-item" href="index.html"><span aria-hidden="true">⌂</span><small>Etusivu</small></a>
+    <a class="nav-item" href="opinnot.html"><span aria-hidden="true">▤</span><small>Opinnot</small></a>
+    <a class="nav-item" href="aikataulu.html"><span aria-hidden="true">▦</span><small>Aikataulu</small></a>
+    <a class="nav-item active" href="profiili.html" aria-current="page"><span aria-hidden="true">♙</span><small>Profiili</small></a>
+</nav>
+
+<aside class="niklas-widget" aria-label="Niklas-avustaja">
+    <button class="niklas-collapsed" id="niklas-collapsed" type="button" hidden>Niklas</button>
+    <div class="niklas-expanded" id="niklas-expanded">
+        <div class="niklas-tip">
+            <button class="niklas-close" id="niklas-close" type="button" aria-label="Pienennä avustaja">×</button>
+            <strong>Voinko auttaa opintojesi suunnittelussa?</strong><span aria-hidden="true">🐾</span>
+        </div>
+        <button class="niklas-avatar-button" id="niklas-avatar-button" type="button" aria-label="Avaa Niklas-keskustelu">
+            <img src="niklas.png" alt=""><span class="niklas-online"></span>
+        </button>
+        <div class="niklas-name"><strong>Niklas AI ✨</strong><small>Kysy apua 🐾</small></div>
+    </div>
+</aside>
+<script>
+    const expanded = document.getElementById("niklas-expanded");
+    const collapsed = document.getElementById("niklas-collapsed");
+    document.getElementById("niklas-close").addEventListener("click", () => {
+        expanded.hidden = true;
+        collapsed.hidden = false;
+    });
+    collapsed.addEventListener("click", () => {
+        collapsed.hidden = true;
+        expanded.hidden = false;
+    });
+    document.getElementById("niklas-avatar-button").addEventListener("click", () => {
+        window.location.href = "chat.html";
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+
+<!-- Niklas-avustaja -->
+<aside class="niklas-widget" aria-label="Niklas-avustaja">
+
+    <!-- Avattu näkymä -->
+    <div class="niklas-expanded" id="niklas-expanded">
+
+        <div class="niklas-tip">
+            <button
+                class="niklas-close"
+                id="niklas-close"
+                type="button"
+                aria-label="Pienennä Niklas-avustaja"
+            >×</button>
+
+            <strong>Tarkistetaanko R-koodia tai kurssien edistymistä?</strong>
+            <span aria-hidden="true">🐾</span>
+        </div>
+
+        <button
+            class="niklas-avatar-button"
+            id="niklas-avatar-button"
+            type="button"
+            aria-label="Avaa Niklas-keskustelu"
+        >
+            <img src="niklas.png" alt="">
+            <span class="niklas-online"></span>
+        </button>
+
+        <div class="niklas-name">
+            <strong>Niklas AI ✨</strong>
+            <small>Kysy apua 🐾</small>
+        </div>
+
+    </div>
+
+    <!-- Pienennetty sininen laatikko -->
+    <button
+        class="niklas-collapsed"
+        id="niklas-collapsed"
+        type="button"
+        aria-label="Avaa Niklas-avustaja"
+        hidden
+    >
+        Niklas
+    </button>
+
+</aside>
+
+<script>
+    const niklasExpanded = document.getElementById("niklas-expanded");
+    const niklasCollapsed = document.getElementById("niklas-collapsed");
+    const niklasClose = document.getElementById("niklas-close");
+    const niklasAvatar = document.getElementById("niklas-avatar-button");
+
+    // Ruksi pienentää avustajan siniseksi laatikoksi.
+    niklasClose.addEventListener("click", function () {
+        niklasExpanded.hidden = true;
+        niklasCollapsed.hidden = false;
+    });
+
+    // Sinistä laatikkoa painamalla avustaja avautuu uudelleen.
+    niklasCollapsed.addEventListener("click", function () {
+        niklasCollapsed.hidden = true;
+        niklasExpanded.hidden = false;
+    });
+
+    // Koiran painaminen avaa keskustelun.
+    niklasAvatar.addEventListener("click", function () {
+        window.location.href = "chat.html";
+    });
+</script>
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Campus Connectin lukujärjestys.">
+    <title>Campus Connect – Aikataulu</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .week-card {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px; margin-bottom: 16px;
+            background: #f0f3ff; border: 1px solid #dce4ff; border-radius: 20px;
+        }
+        .week-card h1 { font-size: 16px; margin: 5px 0 0; }
+        .week-number {
+            display: grid; place-items: center; width: 34px; height: 34px;
+            border-radius: 50%; background: #bce7ff; color: #006b9b;
+            font-weight: bold; font-size: 12px;
+        }
+        .group-title {
+            margin: 18px 4px 10px; font-size: 10px;
+            letter-spacing: 1px; color: #67564f;
+        }
+        .event-card {
+            display: flex; align-items: center; gap: 11px;
+            padding: 12px; margin-bottom: 10px; border: 1px solid #e1e8ff;
+            border-radius: 19px; background: white;
+        }
+        .event-icon {
+            flex: 0 0 32px; height: 32px; display: grid; place-items: center;
+            border-radius: 12px; background: #bfe6ff; color: #005b8d;
+        }
+        .event-details { flex: 1; min-width: 0; }
+        .event-details small { display: block; color: #0074ac; font-size: 9px; margin-bottom: 4px; }
+        .event-details h2 { font-size: 11px; margin: 0 0 5px; line-height: 1.4; }
+        .event-details p { font-size: 9px; margin: 0; color: #74665e; }
+        .event-green .event-icon { background: #20bf70; color: white; }
+        .event-red { background: #fff3f3; border-color: #ffbebe; }
+        .event-red .event-icon { background: #ed0015; color: white; }
+        .event-red .event-details small, .event-red .event-details p { color: #c80014; }
+        .open-button {
+            border: 0; border-radius: 20px; padding: 7px 12px;
+            background: #ed0015; color: white; font-size: 10px;
+            font-weight: bold; cursor: pointer;
+        }
+        .tomorrow-card {
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 8px; padding: 12px; margin-bottom: 9px;
+            background: white; border: 1px solid #e1e8ff; border-radius: 13px;
+        }
+        .tomorrow-card strong { display: block; font-size: 10px; margin: 4px 0; }
+        .tomorrow-card small { display: block; color: #0074ac; font-size: 9px; }
+        .tomorrow-card p { margin: 0; color: #74665e; font-size: 9px; }
+        .course-tag { background: #f0f1f6; padding: 4px 8px; border-radius: 12px; font-size: 9px; white-space: nowrap; }
+    </style>
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="index.html">
+        <span class="brand-icon" aria-hidden="true">🎓</span>
+        <span><small>CAMPUS CONNECT</small><strong>Aikataulu</strong></span>
+    </a>
+    <nav class="top-actions" aria-label="Päätoiminnot">
+        <a href="opinnot.html" aria-label="Opinnot">♧</a>
+        <a href="profiili.html" aria-label="Asetukset">⚙</a>
+        <a class="initials" href="profiili.html">EM</a>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="week-card">
+        <div>
+            <p class="eyebrow">LUKUJÄRJESTYS</p>
+            <h1>Viikko 43 · Keskiviikko</h1>
+        </div>
+        <span class="week-number">24.</span>
+    </section>
+
+    <h2 class="group-title">TÄNÄÄN LUVASSA</h2>
+
+    <article class="event-card">
+        <span class="event-icon" aria-hidden="true">◷</span>
+        <div class="event-details">
+            <small>TIL101 · 10:15 – 12:00</small>
+            <h2>Ohjattu laskuharjoitus (R-työpaja)</h2>
+            <p>♧ Tietokoneluokka BK107</p>
+        </div>
+    </article>
+
+    <article class="event-card event-green">
+        <span class="event-icon" aria-hidden="true">◷</span>
+        <div class="event-details">
+            <small>TIL101 · 12:15 – 14:00</small>
+            <h2>Tilastotiede Luento: Lineaarinen malli</h2>
+            <p>♧ Sali B (Päärakennus)</p>
+        </div>
+    </article>
+
+    <article class="event-card event-red">
+        <span class="event-icon" aria-hidden="true">DL</span>
+        <div class="event-details">
+            <small>TIL101 · 23:59</small>
+            <h2>Viikkotehtävä 3 Palautus</h2>
+            <p>ⓘ Tänään palautettava klo 23:59</p>
+        </div>
+        <button class="open-button" type="button"
+                onclick="alert('Tämä on esimerkkitoiminto.')">Avaa</button>
+    </article>
+
+    <h2 class="group-title">HUOMISEN OHJELMA (TORSTAI)</h2>
+
+    <article class="tomorrow-card">
+        <div>
+            <small>10:15 – 12:00</small>
+            <strong>SQL-kyselyt ja relaatioalgebra</strong>
+            <p>Exactum CK112</p>
+        </div>
+        <span class="course-tag">TKT200</span>
+    </article>
+
+    <article class="tomorrow-card">
+        <div>
+            <small>14:15 – 16:00</small>
+            <strong>Tietokannat harjoitusryhmä 4</strong>
+            <p>Exactum B120</p>
+        </div>
+        <span class="course-tag">TKT200</span>
+    </article>
+</main>
+
+<nav class="bottom-nav" aria-label="Alavalikko">
+    <a class="nav-item" href="index.html"><span aria-hidden="true">⌂</span><small>Etusivu</small></a>
+    <a class="nav-item" href="opinnot.html"><span aria-hidden="true">▤</span><small>Opinnot</small></a>
+    <a class="nav-item active" href="aikataulu.html" aria-current="page"><span aria-hidden="true">▦</span><small>Aikataulu</small></a>
+    <a class="nav-item" href="profiili.html"><span aria-hidden="true">♙</span><small>Profiili</small></a>
+</nav>
+
+<aside class="niklas-widget" aria-label="Niklas-avustaja">
+    <button class="niklas-collapsed" id="niklas-collapsed" type="button" hidden>Niklas</button>
+    <div class="niklas-expanded" id="niklas-expanded">
+        <div class="niklas-tip">
+            <button class="niklas-close" id="niklas-close" type="button" aria-label="Pienennä avustaja">×</button>
+            <strong>Haluatko apua päivän suunnitteluun?</strong><span aria-hidden="true">🐾</span>
+        </div>
+        <button class="niklas-avatar-button" id="niklas-avatar-button" type="button" aria-label="Avaa Niklas-keskustelu">
+            <img src="niklas.png" alt=""><span class="niklas-online"></span>
+        </button>
+        <div class="niklas-name"><strong>Niklas AI ✨</strong><small>Kysy apua 🐾</small></div>
+    </div>
+</aside>
+<script>
+    const expanded = document.getElementById("niklas-expanded");
+    const collapsed = document.getElementById("niklas-collapsed");
+    document.getElementById("niklas-close").addEventListener("click", () => {
+        expanded.hidden = true;
+        collapsed.hidden = false;
+    });
+    collapsed.addEventListener("click", () => {
+        collapsed.hidden = true;
+        expanded.hidden = false;
+    });
+    document.getElementById("niklas-avatar-button").addEventListener("click", () => {
+        window.location.href = "chat.html";
+    });
+</script>
+</body>
+</html>

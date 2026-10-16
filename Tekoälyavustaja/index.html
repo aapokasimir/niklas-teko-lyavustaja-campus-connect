@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Campus Connect - opiskelijan oma avustaja.">
+    <title>Campus Connect – Etusivu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Campus Connect, etusivu">
+            <span class="brand-icon" aria-hidden="true">🎓</span>
+            <span>
+                <small>CAMPUS CONNECT</small>
+                <strong>Etusivu</strong>
+            </span>
+        </a>
+
+        <nav class="top-actions" aria-label="Päätoiminnot">
+            <a href="#tiedotteet" aria-label="Tiedotteet">♧</a>
+            <a href="profiili.html" aria-label="Asetukset ja profiili">⚙</a>
+            <a class="initials" href="profiili.html">EM</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section class="semester" aria-label="Lukukausi">
+            <div>
+                <p class="eyebrow">TÄNÄÄN · KESKIVIIKKO</p>
+                <h1>Kevätlukukausi 2025</h1>
+            </div>
+            <span class="calendar-icon" aria-hidden="true">▦</span>
+        </section>
+
+        <section class="assistant-card" aria-labelledby="welcome-title">
+
+            <button class="close-button" type="button"
+                    aria-label="Piilota tervehdys"
+                    onclick="document.querySelector('.welcome').hidden = true">
+                ×
+            </button>
+
+            <div class="welcome">
+                <img class="puppy"
+                     src="niklas.png"
+                     alt="Niklas-avustajan iloinen kultainennoutaja">
+
+                <span class="status">✧ Niklas valmiina</span>
+
+                <h2 id="welcome-title">Hei Emma! 👋</h2>
+                <p>Miten voin auttaa sinua tänään opiskelussa?</p>
+            </div>
+
+            <nav class="quick-links" aria-label="Opiskelijan pikatoiminnot">
+
+                <a class="action action-blue" href="aikataulu.html">
+                    <span class="action-icon" aria-hidden="true">▦</span>
+                    <span class="action-text">
+                        <strong>Kalenteri &amp; Luennot</strong>
+                        <small>Klo 12:15 Tilastotiede Sali B</small>
+                    </span>
+                    <span class="arrow" aria-hidden="true">→</span>
+                </a>
+
+                <a class="action action-red" href="opinnot.html">
+                    <span class="action-icon" aria-hidden="true">!</span>
+                    <span class="action-text">
+                        <strong>Deadlinet &amp; Tehtävät</strong>
+                        <small>● Tänään palautettava: Viikkotehtävä 3</small>
+                    </span>
+                    <span class="arrow" aria-hidden="true">→</span>
+                </a>
+
+                <a class="action action-green" href="chat.html">
+                    <span class="action-icon" aria-hidden="true">✧</span>
+                    <span class="action-text">
+                        <strong>Tehtävien suositus &amp; Niklas</strong>
+                        <small>Aloita näistä (25 min)</small>
+                    </span>
+                    <span class="arrow" aria-hidden="true">→</span>
+                </a>
+
+                <a class="action action-cyan" href="ruokailu.html">
+                    <span class="action-icon" aria-hidden="true">♜</span>
+                    <span class="action-text">
+                        <strong>Kouluruoka tänään</strong>
+                        <small>Kampuksen ruokalista &amp; aukiolot</small>
+                    </span>
+                    <span class="arrow" aria-hidden="true">→</span>
+                </a>
+
+                <a class="action action-orange" href="#tiedotteet" id="tiedotteet">
+                    <span class="action-icon" aria-hidden="true">⚑</span>
+                    <span class="action-text">
+                        <strong>Ajankohtaiset tiedotteet</strong>
+                        <small>Tentin ilmoittautuminen auki</small>
+                    </span>
+                    <span class="arrow" aria-hidden="true">→</span>
+                </a>
+
+            </nav>
+
+            <form class="chat-form" action="chat.html" method="get">
+                <label class="visually-hidden" for="question">
+                    Kysy Niklakselta
+                </label>
+                <input id="question" name="q" type="text"
+                       placeholder="Kysy Niklakselta mitä vain... (tai sano: 'auta')">
+                <button type="submit" aria-label="Lähetä kysymys">➤</button>
+            </form>
+
+        </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Alavalikko">
+        <a class="nav-item active" href="index.html">
+            <span aria-hidden="true">⌂</span>
+            <small>Etusivu</small>
+        </a>
+        <a class="nav-item" href="opinnot.html">
+            <span aria-hidden="true">▤</span>
+            <small>Opinnot</small>
+        </a>
+        <a class="nav-item" href="aikataulu.html">
+            <span aria-hidden="true">▦</span>
+            <small>Aikataulu</small>
+        </a>
+        <a class="nav-item" href="profiili.html">
+            <span aria-hidden="true">♙</span>
+            <small>Profiili</small>
+        </a>
+    </nav>
+
+</body>
+</html>

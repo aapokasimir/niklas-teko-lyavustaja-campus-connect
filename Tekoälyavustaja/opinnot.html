@@ -1,0 +1,550 @@
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seuraa opintojasi, kurssejasi ja tehtävien palautuspäiviä Campus Connectissa.">
+    <title>Campus Connect – Opinnot</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .study-progress {
+            padding: 17px;
+            margin-bottom: 13px;
+            background: #dfe7ff;
+            border: 1px solid #c8dcff;
+            border-radius: 20px;
+        }
+
+        .study-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 13px;
+        }
+
+        .study-top p {
+            margin: 0;
+            color: #0074ac;
+            font-size: 9px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .credits {
+            padding: 4px 9px;
+            border-radius: 12px;
+            background: white;
+            color: #0074ac;
+            font-size: 9px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .study-progress h1 {
+            margin: 0 0 16px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-size: 10px;
+        }
+
+        .progress-track {
+            height: 8px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: white;
+        }
+
+        .progress-fill {
+            width: 80.5%;
+            height: 100%;
+            border-radius: inherit;
+            background: #20bf70;
+        }
+
+        .deadline-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .deadline-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 11px 9px;
+            border-radius: 14px;
+            font-size: 9px;
+            line-height: 1.5;
+        }
+
+        .deadline-box strong {
+            display: block;
+            font-size: 10px;
+        }
+
+        .deadline-box p {
+            margin: 3px 0 0;
+        }
+
+        .deadline-today {
+            background: #fff0f0;
+            border: 1px solid #ffc4c4;
+            color: #d40016;
+        }
+
+        .deadline-soon {
+            background: #fff8ef;
+            border: 1px solid #ffd6a7;
+            color: #a94b00;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin: 0 3px 12px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: #74665e;
+            font-size: 9px;
+            text-align: right;
+        }
+
+        .course-card {
+            padding: 13px;
+            margin-bottom: 10px;
+            background: white;
+            border: 1px solid #e1e8ff;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgb(30 60 120 / 3%);
+        }
+
+        .course-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .course-icon {
+            display: grid;
+            place-items: center;
+            flex: 0 0 32px;
+            width: 32px;
+            height: 32px;
+            border-radius: 12px;
+            background: #ffdacb;
+            color: #a84c18;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .course-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .course-info small {
+            display: block;
+            margin-bottom: 3px;
+            color: #0074ac;
+            font-size: 9px;
+        }
+
+        .course-info h3 {
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .status {
+            align-self: flex-start;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 9px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .status-active {
+            background: #fff0dc;
+            color: #99420a;
+        }
+
+        .status-done {
+            background: #d2fae7;
+            color: #08764a;
+        }
+
+        .course-divider {
+            height: 1px;
+            margin: 12px 0;
+            background: #edf0fa;
+        }
+
+        .course-schedule {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            color: #74665e;
+            font-size: 9px;
+        }
+
+        .deadline-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border: 1px solid #ffbaba;
+            border-radius: 15px;
+            background: #fff4f4;
+            color: #d40016;
+            font-size: 9px;
+        }
+
+        .deadline-pill.soon {
+            border-color: #ffd09b;
+            background: #fff8ef;
+            color: #a94b00;
+        }
+
+        .assignment {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px;
+            margin-top: 12px;
+            border: 1px solid #ffc5c5;
+            border-radius: 13px;
+            background: #fff4f4;
+        }
+
+        .assignment-icon {
+            display: grid;
+            place-items: center;
+            flex: 0 0 26px;
+            width: 26px;
+            height: 26px;
+            border-radius: 9px;
+            background: #ffe0e0;
+            color: #d40016;
+        }
+
+        .assignment-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .assignment-info strong {
+            display: block;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .assignment-info small {
+            display: block;
+            margin-top: 3px;
+            color: #d40016;
+            font-size: 9px;
+        }
+
+        .assignment button {
+            padding: 6px 10px;
+            border: 1px solid #ffbaba;
+            border-radius: 12px;
+            background: white;
+            color: #d40016;
+            font-size: 9px;
+            cursor: pointer;
+        }
+
+        .completed-course .course-icon {
+            background: #d8fae7;
+            color: #08764a;
+        }
+
+        .completed-note {
+            color: #74665e;
+            font-size: 9px;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid #ff9d42;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 360px) {
+            .deadline-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .course-card {
+                padding: 10px;
+            }
+
+            .section-heading h2 {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <a class="brand" href="index.html">
+        <span class="brand-icon" aria-hidden="true">🎓</span>
+        <span>
+            <small>CAMPUS CONNECT</small>
+            <strong>Opinnot</strong>
+        </span>
+    </a>
+
+    <nav class="top-actions" aria-label="Päätoiminnot">
+        <a href="aikataulu.html" aria-label="Aikataulu">♧</a>
+        <a href="profiili.html" aria-label="Profiili ja asetukset">⚙</a>
+        <a class="initials" href="profiili.html" aria-label="Oma profiili">EM</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <!-- Tutkinnon edistyminen -->
+    <section class="study-progress" aria-labelledby="degree-title">
+        <div class="study-top">
+            <p>♧ KANDIDAATIN TUTKINTO</p>
+            <span class="credits">145 / 180 op</span>
+        </div>
+
+        <h1 id="degree-title">Tietojenkäsittelytiede &amp; Tilastotiede</h1>
+
+        <div class="progress-labels">
+            <span>Tutkinnon edistyminen</span>
+            <strong>80,5 %</strong>
+        </div>
+
+        <div
+            class="progress-track"
+            role="progressbar"
+            aria-label="Tutkinnon edistyminen"
+            aria-valuenow="80.5"
+            aria-valuemin="0"
+            aria-valuemax="100"
+        >
+            <div class="progress-fill"></div>
+        </div>
+    </section>
+
+    <!-- Deadline-yhteenveto -->
+    <section class="deadline-summary" aria-label="Tehtävien määräajat">
+        <div class="deadline-box deadline-today">
+            <span aria-hidden="true">ⓘ</span>
+            <div>
+                <strong>Tänään palautettavat</strong>
+                <p>1 tehtävä (23:59)</p>
+            </div>
+        </div>
+
+        <div class="deadline-box deadline-soon">
+            <span aria-hidden="true">◷</span>
+            <div>
+                <strong>Lähestyvät deadlinet</strong>
+                <p>2 tehtävää tällä viikolla</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kurssit -->
+    <section aria-labelledby="courses-title">
+        <div class="section-heading">
+            <h2 id="courses-title">♧ Käynnissä olevat kurssit</h2>
+            <p>Periodi I (Syksy 2025)</p>
+        </div>
+
+        <article class="course-card">
+            <div class="course-header">
+                <span class="course-icon" aria-hidden="true">TIL</span>
+                <div class="course-info">
+                    <small>TIL101 · 5 OP</small>
+                    <h3>Johdatus Tilastotieteeseen</h3>
+                </div>
+                <span class="status status-active">Aktiivinen</span>
+            </div>
+
+            <div class="course-divider"></div>
+
+            <div class="course-schedule">
+                <span>Ke 12:15–14:00, Sali B</span>
+                <span class="deadline-pill">ⓘ Tänään palautettava</span>
+            </div>
+
+            <div class="assignment">
+                <span class="assignment-icon" aria-hidden="true">▤</span>
+                <div class="assignment-info">
+                    <strong>Viikkotehtävä 3: Regressioanalyysi</strong>
+                    <small>◷ Tänään palautettava klo 23:59</small>
+                </div>
+                <button type="button" onclick="alert('Tehtävän tarkempi näkymä voidaan lisätä myöhemmin.')">
+                    Avaa →
+                </button>
+            </div>
+        </article>
+
+        <article class="course-card">
+            <div class="course-header">
+                <span class="course-icon" aria-hidden="true">TKT</span>
+                <div class="course-info">
+                    <small>TKT200 · 5 OP</small>
+                    <h3>Tietokantojen Perusteet</h3>
+                </div>
+                <span class="status status-active">Aktiivinen</span>
+            </div>
+
+            <div class="course-divider"></div>
+
+            <div class="course-schedule">
+                <span>To 10:15–12:00, Exactum CK112</span>
+                <span class="deadline-pill soon">◷ Pe 28.10. klo 16:00</span>
+            </div>
+        </article>
+
+        <article class="course-card">
+            <div class="course-header">
+                <span class="course-icon" aria-hidden="true">MAT</span>
+                <div class="course-info">
+                    <small>MAT110 · 5 OP</small>
+                    <h3>Lineaarialgebra ja Matriisilaskenta I</h3>
+                </div>
+                <span class="status status-active">Aktiivinen</span>
+            </div>
+
+            <div class="course-divider"></div>
+
+            <div class="course-schedule">
+                <span>Ma 14:15–16:00, Sali A111</span>
+                <span class="deadline-pill soon">◷ Su 30.10. klo 23:59</span>
+            </div>
+        </article>
+
+        <article class="course-card completed-course">
+            <div class="course-header">
+                <span class="course-icon" aria-hidden="true">TKT</span>
+                <div class="course-info">
+                    <small>TKT100 · 5 OP</small>
+                    <h3>Ohjelmoinnin Perusteet (Python)</h3>
+                </div>
+                <span class="status status-done">Suoritettu</span>
+            </div>
+
+            <div class="course-divider"></div>
+            <p class="completed-note">Suoritettu arvosanalla 5/5</p>
+        </article>
+    </section>
+
+    <p class="completed-note">
+        Huomio: kurssit, opintopisteet ja palautuspäivät ovat prototyypin esimerkkitietoja.
+    </p>
+
+</main>
+
+<!-- Alavalikko -->
+<nav class="bottom-nav" aria-label="Alavalikko">
+    <a class="nav-item" href="index.html">
+        <span aria-hidden="true">⌂</span>
+        <small>Etusivu</small>
+    </a>
+    <a class="nav-item active" href="opinnot.html" aria-current="page">
+        <span aria-hidden="true">▤</span>
+        <small>Opinnot</small>
+    </a>
+    <a class="nav-item" href="aikataulu.html">
+        <span aria-hidden="true">▦</span>
+        <small>Aikataulu</small>
+    </a>
+    <a class="nav-item" href="profiili.html">
+        <span aria-hidden="true">♙</span>
+        <small>Profiili</small>
+    </a>
+</nav>
+
+<!-- Niklas-avustaja -->
+<aside class="niklas-widget" aria-label="Niklas-avustaja">
+    <button
+        class="niklas-collapsed"
+        id="niklas-collapsed"
+        type="button"
+        aria-label="Avaa Niklas-avustaja"
+        hidden
+    >Niklas</button>
+
+    <div class="niklas-expanded" id="niklas-expanded">
+        <div class="niklas-tip">
+            <button
+                class="niklas-close"
+                id="niklas-close"
+                type="button"
+                aria-label="Pienennä avustaja"
+            >×</button>
+            <strong>Tarkistetaanko tehtävät yhdessä?</strong>
+            <span aria-hidden="true">🐾</span>
+        </div>
+
+        <button
+            class="niklas-avatar-button"
+            id="niklas-avatar-button"
+            type="button"
+            aria-label="Avaa Niklas-keskustelu"
+        >
+            <img src="niklas.png" alt="">
+            <span class="niklas-online"></span>
+        </button>
+
+        <div class="niklas-name">
+            <strong>Niklas AI ✨</strong>
+            <small>Kysy apua 🐾</small>
+        </div>
+    </div>
+</aside>
+
+<script>
+    const niklasExpanded = document.getElementById("niklas-expanded");
+    const niklasCollapsed = document.getElementById("niklas-collapsed");
+
+    document.getElementById("niklas-close").addEventListener("click", function () {
+        niklasExpanded.hidden = true;
+        niklasCollapsed.hidden = false;
+    });
+
+    niklasCollapsed.addEventListener("click", function () {
+        niklasCollapsed.hidden = true;
+        niklasExpanded.hidden = false;
+    });
+
+    document.getElementById("niklas-avatar-button").addEventListener("click", function () {
+        window.location.href = "chat.html";
+    });
+</script>
+
+</body>
+</html>
